@@ -1,4 +1,8 @@
-﻿using ORMi.Helpers;
+﻿#if NET40
+using ORMi.net40;
+#endif
+
+using ORMi.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -251,6 +255,7 @@ namespace ORMi
             return res;
         }
 
+#if !NET40
         /// <summary>
         /// Runs an async query against WMI. It will return all instances of the class corresponding to the WMI class set on the Type on IEnumerable.
         /// </summary>
@@ -260,6 +265,7 @@ namespace ORMi
         {
             return await Task.Run(() => Query<T>());
         }
+#endif
 
         /// <summary>
         /// Runs a custom query against WMI.
@@ -286,6 +292,7 @@ namespace ORMi
             return res;
         }
 
+#if !NET40
         /// <summary>
         /// Runs an async query against WMI.
         /// </summary>
@@ -296,6 +303,7 @@ namespace ORMi
         {
             return await Task.Run(() => Query<T>(query));
         }
+#endif
 
         /// <summary>
         /// Runs a custom query against WMI returning a single value.
@@ -322,7 +330,7 @@ namespace ORMi
             return res;
         }
 
-        #endregion
+#endregion
 
     }
 }

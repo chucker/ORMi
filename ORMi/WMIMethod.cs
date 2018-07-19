@@ -1,4 +1,8 @@
-﻿using ORMi.Helpers;
+﻿#if NET40
+using ORMi.net40;
+#endif
+
+using ORMi.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -56,7 +60,7 @@ namespace ORMi
 
             foreach (PropertyInfo p in parameters.GetType().GetProperties())
             {
-                inParams[p.Name] = p.GetValue(parameters);
+                inParams[p.Name] = p.GetValue((object)parameters);
             }
 
             ManagementBaseObject result = instance.InvokeMethod(methodName, inParams, null);
@@ -101,7 +105,7 @@ namespace ORMi
 
             foreach (PropertyInfo p in parameters.GetType().GetProperties())
             {
-                inParams[p.Name] = p.GetValue(parameters);
+                inParams[p.Name] = p.GetValue((object)parameters);
             }
 
             ManagementBaseObject result = cls.InvokeMethod(methodName, inParams, null);

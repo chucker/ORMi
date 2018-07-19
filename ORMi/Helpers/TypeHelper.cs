@@ -1,4 +1,8 @@
-﻿using System;
+﻿#if NET40
+using ORMi.net40;
+#endif
+
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
